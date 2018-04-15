@@ -60,6 +60,7 @@ public class MemUnit extends FunctionalUnitBase {
             // functional unit parallel to Execute.  Therefore we must perform
             // address calculation here.
             int addr = source1 + source2;
+            //GlobalData.Addr= source1 + source2;
             
             //oper0.setIntValue(addr);
             //ins.setOper0(oper0);
@@ -81,7 +82,7 @@ public class MemUnit extends FunctionalUnitBase {
             if (input.isNull()) return;
             //doPostedForwarding(input);
             InstructionBase ins = input.getInstruction();
-            output.setResultValue(input.getResultValue());
+            //output.setResultValue(input.getResultValue());
             
             output.setInstruction(ins);
         }
