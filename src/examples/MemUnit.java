@@ -65,7 +65,7 @@ public class MemUnit extends FunctionalUnitBase {
             //ins.setOper0(oper0);
             output.setResultValue(addr);
             
-            //output.setInstruction(ins);
+            output.setInstruction(ins);
         }
     }
     

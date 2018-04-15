@@ -39,8 +39,8 @@ public class MyCpuCore extends CpuCore {
     public void runProgram() {
         properties.setProperty("running", true);
         int i=0;
-        //while (properties.getPropertyBoolean("running")) {
-        while (i<33) {
+        while (properties.getPropertyBoolean("running")) {
+        //while (i<33) {
             Logger.out.println("## Cycle number: " + cycle_number);
             advanceClock();
             i++;
