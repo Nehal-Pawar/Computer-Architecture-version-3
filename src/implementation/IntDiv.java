@@ -42,6 +42,12 @@ import voidtypes.VoidLabelTarget;
              //setResourceWait("ResourceWait"); 
              output.setResultValue(result);
              output.setInstruction(ins);
+             if(GlobalData.Counter16Cycle<=15) {
+                 setResourceWait("Loop"+GlobalData.Counter16Cycle);
+                 GlobalData.Counter16Cycle+=1;
+                 }
+                 else
+                 GlobalData.Counter16Cycle=1;
         }
     }
 

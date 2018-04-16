@@ -40,7 +40,7 @@ public class MyCpuCore extends CpuCore {
         properties.setProperty("running", true);
         int i=0;
         while (properties.getPropertyBoolean("running")) {
-        //while (i<33) {
+        //while (i<1033) {
             Logger.out.println("## Cycle number: " + cycle_number);
             advanceClock();
             i++;
@@ -147,7 +147,7 @@ public class MyCpuCore extends CpuCore {
         //addForwardingSource("FloatAddSub.out");//new
         //addForwardingSource("IntMul.out");
         //addForwardingSource("FloatMul.out");
-        //addForwardingSource("MemUnit.out");
+        addForwardingSource("MemUnit.out");
     }
 
     @Override

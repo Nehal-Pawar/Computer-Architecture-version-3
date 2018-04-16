@@ -51,8 +51,8 @@ public class MemUnit extends FunctionalUnitBase {
             InstructionBase ins = input.getInstruction();
             setActivity(ins.toString());
 
-            //Operand oper0 = ins.getOper0();
-            //int oper0val = ins.getOper0().getValue();
+            Operand oper0 = ins.getOper0();
+            int oper0val = ins.getOper0().getValue();
             int source1 = ins.getSrc1().getValue();
             int source2 = ins.getSrc2().getValue();
             
@@ -62,8 +62,8 @@ public class MemUnit extends FunctionalUnitBase {
             int addr = source1 + source2;
             //GlobalData.Addr= source1 + source2;
             output.setProperty("Addr", addr);
-            //oper0.setIntValue(addr);
-            //ins.setOper0(oper0);
+            oper0.setIntValue(addr);
+            ins.setOper0(oper0);
             //output.setResultValue(addr);
             
             output.setInstruction(ins);
@@ -104,8 +104,8 @@ public class MemUnit extends FunctionalUnitBase {
 
             Operand oper0 = ins.getOper0();
             int oper0val = ins.getOper0().getValue();          
-            //int addr=input.getResultValue();
-            int addr=input.getPropertyInteger("Addr");
+            int addr=input.getResultValue();
+            addr=input.getPropertyInteger("Addr");
             int value = 0;
             IGlobals globals = (GlobalData)getCore().getGlobals();
             int[] memory = globals.getPropertyIntArray(MAIN_MEMORY);
@@ -117,14 +117,14 @@ public class MemUnit extends FunctionalUnitBase {
                     value = memory[addr];
                     output.setResultValue(value);
                     output.setInstruction(ins);
-                    addStatusWord("Addr="+addr);
+                    addStatusWord("Mem["+addr+"]");
                     break;
                 
                 case STORE:
                     // For store, the value to be stored in main memory is
                     // in oper0, which was fetched in Decode.
                     memory[addr] = oper0val;
-                    addStatusWord("Addr=" + ins.getOper0().getValueAsString());
+                    addStatusWord("Mem["+addr+"]=" + ins.getOper0().getValueAsString());
                     //output.setInstruction(ins);
                     return;
                     
