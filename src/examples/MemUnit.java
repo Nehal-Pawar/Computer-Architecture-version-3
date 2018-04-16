@@ -61,10 +61,10 @@ public class MemUnit extends FunctionalUnitBase {
             // address calculation here.
             int addr = source1 + source2;
             //GlobalData.Addr= source1 + source2;
-            
+            output.setProperty("Addr", addr);
             //oper0.setIntValue(addr);
             //ins.setOper0(oper0);
-            output.setResultValue(addr);
+            //output.setResultValue(addr);
             
             output.setInstruction(ins);
         }
@@ -83,7 +83,8 @@ public class MemUnit extends FunctionalUnitBase {
             //doPostedForwarding(input);
             InstructionBase ins = input.getInstruction();
             //output.setResultValue(input.getResultValue());
-            
+            addStatusWord("Addr="+input.getPropertyInteger("Addr"));
+            output.setProperty("Addr", input.getPropertyInteger("Addr") );
             output.setInstruction(ins);
         }
     }
@@ -103,7 +104,8 @@ public class MemUnit extends FunctionalUnitBase {
 
             Operand oper0 = ins.getOper0();
             int oper0val = ins.getOper0().getValue();          
-            int addr=input.getResultValue();
+            //int addr=input.getResultValue();
+            int addr=input.getPropertyInteger("Addr");
             int value = 0;
             IGlobals globals = (GlobalData)getCore().getGlobals();
             int[] memory = globals.getPropertyIntArray(MAIN_MEMORY);
@@ -115,14 +117,14 @@ public class MemUnit extends FunctionalUnitBase {
                     value = memory[addr];
                     output.setResultValue(value);
                     output.setInstruction(ins);
-                    addStatusWord("Mem[" + addr + "]");
+                    addStatusWord("Addr="+addr);
                     break;
                 
                 case STORE:
                     // For store, the value to be stored in main memory is
                     // in oper0, which was fetched in Decode.
                     memory[addr] = oper0val;
-                    addStatusWord("Mem[" + addr + "]=" + ins.getOper0().getValueAsString());
+                    addStatusWord("Addr=" + ins.getOper0().getValueAsString());
                     //output.setInstruction(ins);
                     return;
                     
