@@ -144,10 +144,10 @@ public class MyCpuCore extends CpuCore {
         //addForwardingSource("MemoryToWriteback");
         // MSFU.specifyForwardingSources is where this forwarding source is added
         // addForwardingSource("MSFU.out");
-        addForwardingSource("FloatAddSub.out");//new
-        addForwardingSource("IntMul.out");
-        addForwardingSource("FloatMul.out");
-        addForwardingSource("MemUnit.out");
+        //addForwardingSource("FloatAddSub.out");//new
+        //addForwardingSource("IntMul.out");
+        //addForwardingSource("FloatMul.out");
+        //addForwardingSource("MemUnit.out");
     }
 
     @Override
